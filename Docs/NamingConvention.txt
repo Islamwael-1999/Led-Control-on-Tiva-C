@@ -1,0 +1,25 @@
+ProjectName   : Sprints_ARM_MasterClass
+
+FolderName
+ModuleName_FileName
+
+ModuleName_FunctionName (parameterName)
+localVariable (init with lower case)
+
+MODULENAME_MACRO_OBJECT
+ModuleName_MacroFunctionName(Parameter)
+
+Typedef <primitive-type> ModuleName_TypeNameType; (postfix with “Type”)
+
+struct {
+<AnyType> firstMember;
+<AnyType> SecondMember;
+<AnyType> ThirdMember;
+<AnyType> fourthMember;
+}
+
+enum {
+    MODULENAME_FIRST_MEMBER = 0,
+    MODULENAME_SECOND_MEMBER,
+    MODULENAME_THIRD_MEMBER
+}
