@@ -1,7 +1,7 @@
 /*****************************************************************************
  *  FILE DESCRIPTION
  *  ------------------------------------------------------------------------*/
-/**         \file   IntCtrl.h
+/**         \file   Dio.h
  *          \brief
  * 
  *          \details
@@ -13,20 +13,18 @@
  * File guard 
 /*****************************************************************************/
 
-#ifndef IntCTRL_H
-#define IntCTRL_H
+
+#ifndef DIO_H
+#define DIO_H
 
 /*****************************************************************************
  *      INCLUDES
  * ***************************************************************************/
+#include "DioTypes.h"
 #include "Std_Types.h"
-#include "IntCtrl_Cfg.h"
-#include "IntCtrlTypes.h"
-
 /*****************************************************************************
  *      GLOBAL CONSTANT MACROS
  * ***************************************************************************/
-
 
 /*****************************************************************************
  *      GLOBAL FUNCTION MACROS
@@ -36,32 +34,22 @@
  *      GLOBAL DATA TYPES AND STRUCTURES
  * ***************************************************************************/
 
-extern const Nvic_CfgType  Nvic_Interrupts[];                 /* From Cfg.h */ 
-
 /*****************************************************************************
- *      GLOBAL DATA  Prototypes
+ * Function Prototypes
  * ***************************************************************************/
 
-/*****************************************************************************
- *      GLOBAL Functions  Prototypes
- * ***************************************************************************/
+Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId);
+
+void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level);
+
+Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId);
+
+void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level);
+
+Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId);
+
+#endif   /* HEADER_NAME_H */
 
 /****************************************************************************
- * \Syntax          : void IntCrtl_Init (void)
- * \Description     : Initialize Nvic\SCB Module by parsing the Configuration
- *                      into Nvic\SCB registers
- * 
- * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : void    
- * \Parameter  (out): void
- * \Return value    : void
- * *************************************************************************/
-
-void IntCrtl_Init (void);
-
-#endif   /* IntCtrl_H */
-
-/****************************************************************************
- *      END OF FILE: IntCtrl.h
+ *      END OF FILE: Dio.h
  * **************************************************************************/

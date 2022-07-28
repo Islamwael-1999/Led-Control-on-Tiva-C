@@ -1,7 +1,7 @@
 /*****************************************************************************
  *  FILE DESCRIPTION
  *  ------------------------------------------------------------------------*/
-/**         \file   IntCtrl.h
+/**         \file   FileName.h
  *          \brief
  * 
  *          \details
@@ -13,20 +13,20 @@
  * File guard 
 /*****************************************************************************/
 
-#ifndef IntCTRL_H
-#define IntCTRL_H
+
+#ifndef PORT_INIT_H
+#define PORT_INIT_H
 
 /*****************************************************************************
  *      INCLUDES
  * ***************************************************************************/
 #include "Std_Types.h"
-#include "IntCtrl_Cfg.h"
-#include "IntCtrlTypes.h"
+#include "PortTypes.h"
+#include "Port_Cfg.h"
 
 /*****************************************************************************
  *      GLOBAL CONSTANT MACROS
  * ***************************************************************************/
-
 
 /*****************************************************************************
  *      GLOBAL FUNCTION MACROS
@@ -35,33 +35,16 @@
 /*****************************************************************************
  *      GLOBAL DATA TYPES AND STRUCTURES
  * ***************************************************************************/
+extern  const Port_CfgType  Ports_init[CHANNELS_INITIALEZED_NUMBER];                 /* From Cfg.h */ 
 
-extern const Nvic_CfgType  Nvic_Interrupts[];                 /* From Cfg.h */ 
-
+extern const  Port_Interrupts callBacks[PORT_INTERRUPTS_INITIALIZED];
 /*****************************************************************************
- *      GLOBAL DATA  Prototypes
+ *      Function Prototypes
  * ***************************************************************************/
+void init_Port(const Port_CfgType * config);
 
-/*****************************************************************************
- *      GLOBAL Functions  Prototypes
- * ***************************************************************************/
+#endif   /* HEADER_NAME_H */
 
 /****************************************************************************
- * \Syntax          : void IntCrtl_Init (void)
- * \Description     : Initialize Nvic\SCB Module by parsing the Configuration
- *                      into Nvic\SCB registers
- * 
- * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : void    
- * \Parameter  (out): void
- * \Return value    : void
- * *************************************************************************/
-
-void IntCrtl_Init (void);
-
-#endif   /* IntCtrl_H */
-
-/****************************************************************************
- *      END OF FILE: IntCtrl.h
+ *      END OF FILE: FileName.h
  * **************************************************************************/

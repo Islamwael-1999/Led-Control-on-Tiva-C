@@ -1,7 +1,7 @@
 /*****************************************************************************
  *  FILE DESCRIPTION
  *  ------------------------------------------------------------------------*/
-/**         \file   main.c
+/**         \file   InCtrl_Lcfg.c
  *          \brief
  * 
  *          \details
@@ -12,8 +12,7 @@
 /*****************************************************************************
  *      INCLUDES
  * **************************************************************************/
-#include "pwm.h"
-
+#include "IntCtrl.h"
 /*****************************************************************************
  * LOCAL MACROS CONSTANT\FUNCTION
  * **************************************************************************/
@@ -42,35 +41,13 @@
  * LOCAL MACROS CONSTANT\FUNCTION
  * **************************************************************************/
 
+const Nvic_CfgType  Nvic_Interrupts[ACTIVATED_INT_NUM]=
+{   // Interupt Type/Number, Group Priority,  SubGroup Priority
+    {   GPIO_PORT_F ,              1,                  0},
+    {   _16_32_BIT_TIMER_0A,       2,                  0}
+    
+};
 /****************************************************************************
- * \Syntax          : int main (void )
- * \Description     : Main function for code
- * 
- * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : None
- * \Parameter  (out): None 
- * \Return value    : Std_ReturnType E_OK
- *                                   E_NOT_OK
- * *************************************************************************/
-int main(void)
-{
-	
-	
-	// Dio_ChannelType channel1 = {PORTF, PIN_2};
-	// Dio_ChannelType channel2 = {PORTF, PIN_3};
-	// Dio_WriteChannel(channel1,DIO_HIGH);
-	// Dio_WriteChannel(channel2,DIO_HIGH);
-	init_Configuartion();
-	while(1)
-	{
-		RunPwm();
-	}
-
-   return 0;
-	
-}
-/****************************************************************************
- *      END OF FILE: main.c
+ *      END OF FILE: InCtrl_Lcfg.c
  * **************************************************************************/
  

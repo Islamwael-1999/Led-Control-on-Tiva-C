@@ -1,7 +1,7 @@
 /*****************************************************************************
  *  FILE DESCRIPTION
  *  ------------------------------------------------------------------------*/
-/**         \file   main.c
+/**         \file   Port_Lcfg.c
  *          \brief
  * 
  *          \details
@@ -12,7 +12,10 @@
 /*****************************************************************************
  *      INCLUDES
  * **************************************************************************/
-#include "pwm.h"
+#include "PortInit.h"
+
+// #include "Std_Types.h"
+// #include "Mcu_Hw.h"
 
 /*****************************************************************************
  * LOCAL MACROS CONSTANT\FUNCTION
@@ -25,7 +28,9 @@
 /*****************************************************************************
  * GLOABL DATA
  * ***************************************************************************/
-
+uint32 OnNumber=1;
+uint32 OffNumber=1;
+uint32 mode=0;
 /*****************************************************************************
  * LOCAL FUNCTION PROTOTYPES
  * ***************************************************************************/
@@ -43,34 +48,59 @@
  * **************************************************************************/
 
 /****************************************************************************
- * \Syntax          : int main (void )
- * \Description     : Main function for code
+ * \Syntax          : Std_ReturnType FunctionName (AnyType parameterName)
+ * \Description     : Describe this service
  * 
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Non Reentrant
- * \Parameters (in) : None
- * \Parameter  (out): None 
+ * \Parameters (in) : parameterName     Parameter Description
+ * \Parameter  (out):None
  * \Return value    : Std_ReturnType E_OK
  *                                   E_NOT_OK
  * *************************************************************************/
-int main(void)
+void callback_PortF(Pin_Number pin)
 {
-	
-	
-	// Dio_ChannelType channel1 = {PORTF, PIN_2};
-	// Dio_ChannelType channel2 = {PORTF, PIN_3};
-	// Dio_WriteChannel(channel1,DIO_HIGH);
-	// Dio_WriteChannel(channel2,DIO_HIGH);
-	init_Configuartion();
-	while(1)
-	{
-		RunPwm();
-	}
-
-   return 0;
-	
+    if(pin == 0)
+    {
+        if(mode ==0)
+        {
+            
+        }
+        else if (mode ==1)
+        {
+            OnNumber ++;
+        }
+        else if (mode == 2)
+        {
+            OffNumber ++;
+        }
+    }
+    else if (pin == 4) 
+    {
+        mode ++;
+        mode %=3;
+    }
 }
+
+
+
+const Port_CfgType  Ports_init[CHANNELS_INITIALEZED_NUMBER]=
+{   /*Port_PinType   , Level     DIR                MODE               Internal Attach    Current    */
+    {{PORTF,PIN0},      LOW,   INPUT,              DIO,                  PULL_UP  ,        _2_mA , EDGE_LOW},
+    {{PORTF,PIN4},      LOW,    INPUT,             DIO    ,              PULL_UP ,         _4_mA , EDGE_LOW},
+    {{PORTF,PIN2},      LOW,    OUTPUT,            DIO    ,              PULL_DOWN ,         _2_mA , PORT_DISABLE},
+    {{PORTF,PIN3},      LOW,    OUTPUT,            DIO    ,              PULL_DOWN ,         _2_mA , PORT_DISABLE}
+
+
+};
+
+const Port_Interrupts callBacks[PORT_INTERRUPTS_INITIALIZED]=
+{
+    {PORTF, &callback_PortF}
+};
+
+
 /****************************************************************************
- *      END OF FILE: main.c
+ *      END OF FILE: Port_Lcfg.c
  * **************************************************************************/
  

@@ -1,7 +1,7 @@
 /*****************************************************************************
  *  FILE DESCRIPTION
  *  ------------------------------------------------------------------------*/
-/**         \file   IntCtrl.h
+/**         \file   FileName.h
  *          \brief
  * 
  *          \details
@@ -13,20 +13,17 @@
  * File guard 
 /*****************************************************************************/
 
-#ifndef IntCTRL_H
-#define IntCTRL_H
+
+#ifndef PWM_H
+#define PWM_H
 
 /*****************************************************************************
  *      INCLUDES
  * ***************************************************************************/
-#include "Std_Types.h"
-#include "IntCtrl_Cfg.h"
-#include "IntCtrlTypes.h"
 
 /*****************************************************************************
  *      GLOBAL CONSTANT MACROS
  * ***************************************************************************/
-
 
 /*****************************************************************************
  *      GLOBAL FUNCTION MACROS
@@ -36,32 +33,15 @@
  *      GLOBAL DATA TYPES AND STRUCTURES
  * ***************************************************************************/
 
-extern const Nvic_CfgType  Nvic_Interrupts[];                 /* From Cfg.h */ 
-
 /*****************************************************************************
- *      GLOBAL DATA  Prototypes
+ *      Functio Prototypes
  * ***************************************************************************/
+void init_Configuartion();
+void RunPwm();
 
-/*****************************************************************************
- *      GLOBAL Functions  Prototypes
- * ***************************************************************************/
+ 
+#endif   /* HEADER_NAME_H */
 
 /****************************************************************************
- * \Syntax          : void IntCrtl_Init (void)
- * \Description     : Initialize Nvic\SCB Module by parsing the Configuration
- *                      into Nvic\SCB registers
- * 
- * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : void    
- * \Parameter  (out): void
- * \Return value    : void
- * *************************************************************************/
-
-void IntCrtl_Init (void);
-
-#endif   /* IntCtrl_H */
-
-/****************************************************************************
- *      END OF FILE: IntCtrl.h
+ *      END OF FILE: FileName.h
  * **************************************************************************/

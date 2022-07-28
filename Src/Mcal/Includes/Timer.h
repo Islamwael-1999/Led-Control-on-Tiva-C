@@ -1,33 +1,32 @@
 /*****************************************************************************
  *  FILE DESCRIPTION
  *  ------------------------------------------------------------------------*/
-/**         \file   IntCtrl.h
+/**         \file   Timer.h
  *          \brief
- * 
+ *
  *          \details
  *
- * 
+ *
  * ***************************************************************************/
 
 /*****************************************************************************
- * File guard 
+ * File guard
 /*****************************************************************************/
 
-#ifndef IntCTRL_H
-#define IntCTRL_H
+#ifndef TIMER_H
+#define TIMER_H
 
 /*****************************************************************************
  *      INCLUDES
  * ***************************************************************************/
 #include "Std_Types.h"
-#include "IntCtrl_Cfg.h"
-#include "IntCtrlTypes.h"
+#include "TimerTypes.h"
+#include "Timer_Cfg.h"
 
 /*****************************************************************************
  *      GLOBAL CONSTANT MACROS
  * ***************************************************************************/
-
-
+extern const Gpt_ConfigType TimerConfig[NUMBER_OF_TIMERS_INIT];
 /*****************************************************************************
  *      GLOBAL FUNCTION MACROS
  * ***************************************************************************/
@@ -36,32 +35,20 @@
  *      GLOBAL DATA TYPES AND STRUCTURES
  * ***************************************************************************/
 
-extern const Nvic_CfgType  Nvic_Interrupts[];                 /* From Cfg.h */ 
-
 /*****************************************************************************
- *      GLOBAL DATA  Prototypes
+ * Function Prototypes
  * ***************************************************************************/
+void                Gpt_Init                   (const Gpt_ConfigType *ConfigPtr);
+void                Gpt_DisableNotification    (Gpt_ChannelType channel);
+void                Gpt_EnableNotification     (Gpt_ChannelType channel);
+void                Gpt_StartTimer             (Gpt_ChannelType channel, Gpt_ValueType value);
+void                Gpt_StopTimer              (Gpt_ChannelType channel);
+void                Gpt_NotificationFn         (void);
+Gpt_ValueType Gpt_GetRemainingTime             (Gpt_ChannelType channel);
+Gpt_ValueType Gpt_GetTimeElapsed               (Gpt_ChannelType channel);
 
-/*****************************************************************************
- *      GLOBAL Functions  Prototypes
- * ***************************************************************************/
+#endif /* TIMER_INIT_H */
 
 /****************************************************************************
- * \Syntax          : void IntCrtl_Init (void)
- * \Description     : Initialize Nvic\SCB Module by parsing the Configuration
- *                      into Nvic\SCB registers
- * 
- * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : void    
- * \Parameter  (out): void
- * \Return value    : void
- * *************************************************************************/
-
-void IntCrtl_Init (void);
-
-#endif   /* IntCtrl_H */
-
-/****************************************************************************
- *      END OF FILE: IntCtrl.h
+ *      END OF FILE: Timer.h
  * **************************************************************************/

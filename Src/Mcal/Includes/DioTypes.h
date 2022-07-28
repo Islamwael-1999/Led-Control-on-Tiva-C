@@ -1,32 +1,28 @@
 /*****************************************************************************
  *  FILE DESCRIPTION
  *  ------------------------------------------------------------------------*/
-/**         \file   IntCtrl.h
+/**         \file   FileName.h
  *          \brief
- * 
+ *
  *          \details
  *
- * 
+ *
  * ***************************************************************************/
 
 /*****************************************************************************
- * File guard 
+ * File guard
 /*****************************************************************************/
 
-#ifndef IntCTRL_H
-#define IntCTRL_H
+#ifndef DIO_TYPES_H
+#define DIO_TYPES_H
 
 /*****************************************************************************
  *      INCLUDES
  * ***************************************************************************/
 #include "Std_Types.h"
-#include "IntCtrl_Cfg.h"
-#include "IntCtrlTypes.h"
-
 /*****************************************************************************
  *      GLOBAL CONSTANT MACROS
  * ***************************************************************************/
-
 
 /*****************************************************************************
  *      GLOBAL FUNCTION MACROS
@@ -35,33 +31,48 @@
 /*****************************************************************************
  *      GLOBAL DATA TYPES AND STRUCTURES
  * ***************************************************************************/
+typedef enum
+{
+   
+    PIN_0,
+    PIN_1,
+    PIN_2,
+    PIN_3,
+    PIN_4,
+    PIN_5,
+    PIN_6,
+    PIN_7
 
-extern const Nvic_CfgType  Nvic_Interrupts[];                 /* From Cfg.h */ 
+} Dio_PinType;
 
-/*****************************************************************************
- *      GLOBAL DATA  Prototypes
- * ***************************************************************************/
 
-/*****************************************************************************
- *      GLOBAL Functions  Prototypes
- * ***************************************************************************/
+typedef enum
+{
+    DIO_PORTA = 0,
+    DIO_PORTB,
+    DIO_PORTC,
+    DIO_PORTD,
+    DIO_PORTE,
+    DIO_PORTF
+
+} Dio_PortType;
+
+typedef struct 
+{
+    Dio_PortType port;
+    Dio_PinType pin;
+}Dio_ChannelType;
+
+
+typedef enum {
+    DIO_LOW,
+    DIO_HIGH
+}Dio_LevelType;
+
+typedef  uint32 Dio_PortLevelType  ;
+
+#endif /* HEADER_NAME_H */
 
 /****************************************************************************
- * \Syntax          : void IntCrtl_Init (void)
- * \Description     : Initialize Nvic\SCB Module by parsing the Configuration
- *                      into Nvic\SCB registers
- * 
- * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : void    
- * \Parameter  (out): void
- * \Return value    : void
- * *************************************************************************/
-
-void IntCrtl_Init (void);
-
-#endif   /* IntCtrl_H */
-
-/****************************************************************************
- *      END OF FILE: IntCtrl.h
+ *      END OF FILE: FileName.h
  * **************************************************************************/

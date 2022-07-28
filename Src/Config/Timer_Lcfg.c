@@ -1,7 +1,7 @@
 /*****************************************************************************
  *  FILE DESCRIPTION
  *  ------------------------------------------------------------------------*/
-/**         \file   main.c
+/**         \file   FileName.c
  *          \brief
  * 
  *          \details
@@ -12,8 +12,10 @@
 /*****************************************************************************
  *      INCLUDES
  * **************************************************************************/
-#include "pwm.h"
 
+#include "Timer.h"
+#include "Std_Types.h"
+#include "Dio.h"
 /*****************************************************************************
  * LOCAL MACROS CONSTANT\FUNCTION
  * **************************************************************************/
@@ -21,7 +23,7 @@
 /****************************************************************************
  * LOCAL DATA
  * **************************************************************************/
-
+uint8  timer_0_Flag =0;
 /*****************************************************************************
  * GLOABL DATA
  * ***************************************************************************/
@@ -42,35 +44,36 @@
  * LOCAL MACROS CONSTANT\FUNCTION
  * **************************************************************************/
 
+const Gpt_ConfigType TimerConfig[NUMBER_OF_TIMERS_INIT]=
+{
+    {_16_32_TIMER_0_A,0xF42400,100,GPT_CH_MODE_CONTINOUS,&callBack_Timer_1_32}
+};
+
 /****************************************************************************
- * \Syntax          : int main (void )
- * \Description     : Main function for code
+ * \Syntax          : Std_ReturnType FunctionName (AnyType parameterName)
+ * \Description     : Describe this service
  * 
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Non Reentrant
- * \Parameters (in) : None
- * \Parameter  (out): None 
+ * \Parameters (in) : parameterName     Parameter Description
+ * \Parameter  (out):None
  * \Return value    : Std_ReturnType E_OK
  *                                   E_NOT_OK
  * *************************************************************************/
-int main(void)
-{
-	
-	
-	// Dio_ChannelType channel1 = {PORTF, PIN_2};
-	// Dio_ChannelType channel2 = {PORTF, PIN_3};
-	// Dio_WriteChannel(channel1,DIO_HIGH);
-	// Dio_WriteChannel(channel2,DIO_HIGH);
-	init_Configuartion();
-	while(1)
-	{
-		RunPwm();
-	}
 
-   return 0;
-	
+void callBack_Timer_1_32()
+{   
+    Gpt_StopTimer(_16_32_TIMER_0_A);
+    timer_0_Flag = 1;
 }
+
+
+
+
+
+
+
 /****************************************************************************
- *      END OF FILE: main.c
+ *      END OF FILE: FileName.c
  * **************************************************************************/
  

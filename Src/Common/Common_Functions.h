@@ -1,9 +1,9 @@
 /*****************************************************************************
  *  FILE DESCRIPTION
  *  ------------------------------------------------------------------------*/
-/**         \file   FileName.h
- *          \brief
- * 
+/**         \file   Common_Functions.h
+ *          \brief  This header file contains basic functions such as bit operations   
+ *               
  *          \details
  *
  * 
@@ -14,8 +14,8 @@
 /*****************************************************************************/
 
 
-#ifndef HEADER_NAME_H
-#define HEADER_NAME_H
+#ifndef COMMON_FUNCTIONS_H
+#define COMMON_FUNCTIONS_H
 
 /*****************************************************************************
  *      INCLUDES
@@ -29,6 +29,12 @@
  *      GLOBAL FUNCTION MACROS
  * ***************************************************************************/
 
+#define SET_BIT(VAR,BITNO) (VAR) |=  (1 << (BITNO))
+#define CLR_BIT(VAR,BITNO) (VAR) &= ~(1 << (BITNO))
+#define TOG_BIT(VAR,BITNO) (VAR) ^=  (1 << (BITNO))
+#define GET_BIT(VAR,BITNO) (((VAR) >> (BITNO)) & 0x01)
+
+#define GET_HWREG(BASE_ADDR,REG_OFFSET)     *((volatile uint32*)(BASE_ADDR+REG_OFFSET))
 /*****************************************************************************
  *      GLOBAL DATA TYPES AND STRUCTURES
  * ***************************************************************************/
