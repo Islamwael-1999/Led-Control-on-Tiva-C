@@ -71,21 +71,13 @@ void init_Configuartion()
 }
 
 void RunPwm()
-{
+{   Dio_ChannelType Sw1 = {DIO_PORTF, PIN_0};
     Dio_ChannelType channel = {DIO_PORTF, PIN_2};
-    Dio_ChannelType Sw1 = {DIO_PORTF, PIN_0};
-    Dio_ChannelType Sw2 = {PORTF, PIN4};
     uint8 val; 
     Dio_LevelType sw1 = Dio_ReadChannel(Sw1);
     if (sw1 == DIO_HIGH)
     {
-        mode++;
-        mode %= 3;
-        Dio_WriteChannel(Sw1, DIO_LOW);
-        if (mode != 0)
-            Gpt_StopTimer(_16_32_BIT_TIMER_0A);
-        else 
-            timer_0_Flag =1;
+       changeMode();
     }
     if (mode == 0)
     {
@@ -110,19 +102,44 @@ void RunPwm()
     }
     else if (mode == 1)
     {
-        Dio_LevelType sw2 = Dio_ReadChannel(Sw2);
+        IncrementOnPeriod();
+    }
+    else if (mode == 2)
+    {   
+       IncrementOffPeriod();
+    }
+}
+
+void changeMode()
+{   
+    Dio_ChannelType Sw1 = {DIO_PORTF, PIN_0};
+
+     mode++;
+        mode %= 3;
+        Dio_WriteChannel(Sw1, DIO_LOW);
+        if (mode != 0)
+            Gpt_StopTimer(_16_32_BIT_TIMER_0A);
+        else 
+            timer_0_Flag =1;
+}
+void IncrementOnPeriod()
+{
+    Dio_ChannelType Sw2 = {PORTF, PIN4};
+    Dio_LevelType sw2 = Dio_ReadChannel(Sw2);
         if (sw2 == DIO_HIGH)
             OnNumber = (OnNumber + 1) % 50;
         Dio_WriteChannel(Sw2, DIO_LOW);
-    }
-    else if (mode == 2)
-    {
-        Dio_LevelType sw2 = Dio_ReadChannel(Sw2);
-        if (sw2 == DIO_HIGH)
-            OffNumber = (OffNumber + 1) % 50;
-        Dio_WriteChannel(Sw2, DIO_LOW);
-    }
 }
+
+void IncrementOffPeriod()
+{
+    Dio_ChannelType Sw2 = {PORTF, PIN4};
+    Dio_LevelType sw2 = Dio_ReadChannel(Sw2);
+    if (sw2 == DIO_HIGH)
+        OffNumber = (OffNumber + 1) % 50;
+    Dio_WriteChannel(Sw2, DIO_LOW);
+}
+
 /****************************************************************************
  *      END OF FILE: FileName.c
  * **************************************************************************/
