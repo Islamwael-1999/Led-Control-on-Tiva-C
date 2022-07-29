@@ -86,8 +86,8 @@ void callback_PortF(Pin_Number pin)
 
 const Port_CfgType  Ports_init[CHANNELS_INITIALEZED_NUMBER]=
 {   /*Port_PinType   , Level     DIR                MODE               Internal Attach    Current    */
-    {{PORTF,PIN0},      LOW,   INPUT,              DIO,                  PULL_UP  ,        _2_mA , EDGE_LOW},
-    {{PORTF,PIN4},      LOW,    INPUT,             DIO    ,              PULL_UP ,         _4_mA , EDGE_LOW},
+    {{PORTF,PIN0},      LOW,   INPUT,              DIO,                  PULL_DOWN  ,        _2_mA , EDGE_LOW},
+    {{PORTF,PIN4},      LOW,    INPUT,             DIO    ,              PULL_DOWN ,         _4_mA , EDGE_LOW},
     {{PORTF,PIN2},      LOW,    OUTPUT,            DIO    ,              PULL_DOWN ,         _2_mA , PORT_DISABLE},
     {{PORTF,PIN3},      LOW,    OUTPUT,            DIO    ,              PULL_DOWN ,         _2_mA , PORT_DISABLE}
 
