@@ -111,7 +111,7 @@ Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)
     uint8 pinOffset = (uint8)ChannelId.pin;
     uint8 totalShift =pinOffset +2;
 
-    uint32 gpioOffsetMask =  GPIODATA_OFFSET + 1<<totalShift ;
+    uint32 gpioOffsetMask =  GPIODATA_OFFSET + (0xFF)<<2 ;
     Dio_LevelType level = (GET_HWREG(portBase, gpioOffsetMask) & (1<< pinOffset))>>pinOffset;
 
     return level;
@@ -136,7 +136,7 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId, Dio_LevelType Level)
 
     uint8 pinOffset = (uint8)ChannelId.pin;
     uint8 totalShift =pinOffset +2;
-    uint32 gpioOffsetMask = GPIODATA_OFFSET + 1<<totalShift ;
+    uint32 gpioOffsetMask = GPIODATA_OFFSET + (0xFF)<<2 ;
     uint8 value =   Level << pinOffset;
     GET_HWREG(portBase, gpioOffsetMask) = value;
 }
